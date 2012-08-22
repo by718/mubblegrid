@@ -56,7 +56,6 @@ function opencamera() {
             allowImageEditing:true
 	})};
 
-win1.add(cameraButton);
 
 var win3 = Titanium.UI.createWindow({  
     title:'Tab 3',
@@ -118,25 +117,14 @@ var label5 = Titanium.UI.createLabel({
 
 win5.add(label5);
 
-var win6 = Titanium.UI.createWindow({  
-    title:'Tab 6',
-    backgroundColor:'#fff'
-});
+var ScoreWindow = require('ScoreWindow'), 
+scoreWin = new ScoreWindow();
+
 var tab6 = Titanium.UI.createTab({  
     icon:'KS_nav_ui.png',
     title:'Tab 6',
-    window:win6
+    window:scoreWin
 });
-
-var label6= Titanium.UI.createLabel({
-	color:'#999',
-	text:'I am Window 6',
-	font:{fontSize:20,fontFamily:'Helvetica Neue'},
-	textAlign:'center',
-	width:'auto'
-});
-
-win6.add(label6);
 
 
 
