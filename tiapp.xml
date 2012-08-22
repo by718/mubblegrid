@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <property name="acs-oauth-secret-production" type="string">jsAAmq45RzvrQrqAGKA5SoBynEkdHqaA</property>
+    <property name="acs-oauth-key-production" type="string">lsnrmMO0nc2XD48szCkWCpfzKcSDdg7b</property>
+    <property name="acs-api-key-production" type="string">S2I8tMIMg3c9XXkB2nGFRqke1fsIKmNf</property>
+    <property name="acs-oauth-secret-development" type="string">QBG83znrfhmosroYI0sVGaRoUF9I3LUy</property>
+    <property name="acs-oauth-key-development" type="string">oxHGviH2UenYkxOAMxKLLn6wTEVBqeoC</property>
+    <property name="acs-api-key-development" type="string">0JLqbtrC7GEPMwA22456nYB0GCOlR0gK</property>
+    <deployment-targets>
+        <target device="mobileweb">true</target>
+        <target device="iphone">true</target>
+        <target device="ipad">true</target>
+        <target device="android">false</target>
+        <target device="blackberry">false</target>
+    </deployment-targets>
+    <sdk-version>2.1.1.GA</sdk-version>
+    <id>mubblegrid</id>
+    <name>mubblegrid</name>
+    <version>1.0</version>
+    <publisher>BrianYoung</publisher>
+    <url>https://sites.google.com/a/kaplan.com/mubble-grid-hackathon-project/home</url>
+    <description>not specified</description>
+    <copyright>2012 by BrianYoung</copyright>
+    <icon>appicon.png</icon>
+    <persistent-wifi>false</persistent-wifi>
+    <prerendered-icon>false</prerendered-icon>
+    <statusbar-style>default</statusbar-style>
+    <statusbar-hidden>false</statusbar-hidden>
+    <fullscreen>false</fullscreen>
+    <navbar-hidden>false</navbar-hidden>
+    <analytics>true</analytics>
+    <guid>66401fa5-dde2-4a01-a770-5238b483f2a9</guid>
+    <property name="ti.ui.defaultunit">system</property>
+    <iphone>
+        <orientations device="iphone">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+        </orientations>
+        <orientations device="ipad">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+            <orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_LEFT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
+        </orientations>
+    </iphone>
+    <android xmlns:android="http://schemas.android.com/apk/res/android"/>
+    <mobileweb>
+        <precache/>
+        <splash>
+            <enabled>true</enabled>
+            <inline-css-images>true</inline-css-images>
+        </splash>
+        <theme>default</theme>
+    </mobileweb>
+    <modules>
+        <module platform="commonjs" version="2.2.0">ti.cloud</module>
+    </modules>
+</ti:app>
