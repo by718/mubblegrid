@@ -26,7 +26,30 @@ var label1 = Titanium.UI.createLabel({
 	width:'auto'
 });
 
-win1.add(label1);
+var cameraButton = Titanium.UI.createButton({title: 'Take Picture'});
+cameraButton.addEventListener('click', opencamera); 
+
+function opencamera() { 
+	Titanium.Media.showCamera({
+		success:function(event){
+			var image = event.media;
+ 			imageView.image = image;
+        },
+        cancel:function(){},
+            error:function(error){
+                var a = Titanium.UI.createAlertDialog({title:'Camera'});
+ 				if (error.code == Titanium.Media.NO_CAMERA){
+                    a.setMessage('Device does not have video recording capabilities');
+                }
+                else{
+                    a.setMessage('Unexpected error: ' + error.code);
+                }
+                a.show();
+            },
+            saveToPhotoGallery:true,
+            allowImageEditing:true
+	})};
+
 
 //
 // create controls tab and root window
