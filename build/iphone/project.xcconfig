@@ -1,5 +1,5 @@
 TI_VERSION=2.1.1.GA
-TI_SDK_DIR=/Users/BrianYoung/Library/Application Support/Titanium/mobilesdk/osx/$(TI_VERSION)/iphone
+TI_SDK_DIR=/Users/tcheng/Library/Application Support/Titanium/mobilesdk/osx/$(TI_VERSION)/iphone
 TI_APPID=mubblegrid
 OTHER_LDFLAGS[sdk=iphoneos*]=$(inherited) -weak_framework iAd
 OTHER_LDFLAGS[sdk=iphonesimulator*]=$(inherited) -weak_framework iAd
