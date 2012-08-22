@@ -39,7 +39,7 @@ function opencamera() {
             error:function(error){
                 var a = Titanium.UI.createAlertDialog({title:'Camera'});
  				if (error.code == Titanium.Media.NO_CAMERA){
-                    a.setMessage('Device does not have video recording capabilities');
+                    a.setMessage('Your device does not seem to have a camera.');
                 }
                 else{
                     a.setMessage('Unexpected error: ' + error.code);
@@ -75,6 +75,86 @@ var label2 = Titanium.UI.createLabel({
 
 win2.add(label2);
 
+var win3 = Titanium.UI.createWindow({  
+    title:'Tab 3',
+    backgroundColor:'#fff'
+});
+var tab3 = Titanium.UI.createTab({  
+    icon:'KS_nav_ui.png',
+    title:'Tab 3',
+    window:win3
+});
+
+var label3 = Titanium.UI.createLabel({
+	color:'#999',
+	text:'I am Window 3',
+	font:{fontSize:20,fontFamily:'Helvetica Neue'},
+	textAlign:'center',
+	width:'auto'
+});
+
+win3.add(label3);
+
+var win4 = Titanium.UI.createWindow({  
+    title:'Tab 4',
+    backgroundColor:'#fff'
+});
+var tab4 = Titanium.UI.createTab({  
+    icon:'KS_nav_ui.png',
+    title:'Tab 4',
+    window:win4
+});
+
+var label4 = Titanium.UI.createLabel({
+	color:'#999',
+	text:'I am Window 4',
+	font:{fontSize:20,fontFamily:'Helvetica Neue'},
+	textAlign:'center',
+	width:'auto'
+});
+
+win4.add(label4);
+
+var win5 = Titanium.UI.createWindow({  
+    title:'Tab 5',
+    backgroundColor:'#fff'
+});
+var tab5 = Titanium.UI.createTab({  
+    icon:'KS_nav_ui.png',
+    title:'Tab 5',
+    window:win5
+});
+
+var label5 = Titanium.UI.createLabel({
+	color:'#999',
+	text:'I am Window 5',
+	font:{fontSize:20,fontFamily:'Helvetica Neue'},
+	textAlign:'center',
+	width:'auto'
+});
+
+win5.add(label5);
+
+var win6 = Titanium.UI.createWindow({  
+    title:'Tab 6',
+    backgroundColor:'#fff'
+});
+var tab6 = Titanium.UI.createTab({  
+    icon:'KS_nav_ui.png',
+    title:'Tab 6',
+    window:win6
+});
+
+var label6= Titanium.UI.createLabel({
+	color:'#999',
+	text:'I am Window 6',
+	font:{fontSize:20,fontFamily:'Helvetica Neue'},
+	textAlign:'center',
+	width:'auto'
+});
+
+win6.add(label6);
+
 
 
 //
@@ -82,6 +162,11 @@ win2.add(label2);
 //
 tabGroup.addTab(tab1);  
 tabGroup.addTab(tab2);  
+tabGroup.addTab(tab3);  
+tabGroup.addTab(tab4);  
+tabGroup.addTab(tab5);
+tabGroup.addTab(tab6);  
+  
 
 
 // open tab group
