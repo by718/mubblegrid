@@ -50,6 +50,7 @@ function opencamera() {
             allowImageEditing:true
 	})};
 
+win1.add(cameraButton);
 
 //
 // create controls tab and root window
