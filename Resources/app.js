@@ -1,144 +1,71 @@
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Titanium.UI.setBackgroundColor('#000');
 
-// create tab group
-var tabGroup = Titanium.UI.createTabGroup();
-
+var tabGroup = Titanium.UI.createTabGroup({
+	
+});
 
 //
-// create Welcome/Home Window window
+// Welcome/Home
 //
-var tab1 = Titanium.UI.createTab({  
-    icon:'KS_nav_views.png',
+var WelcomeWindow = require('WelcomeWindow'),
+	welcomeWin = new WelcomeWindow();
+
+var welcomeTab = Titanium.UI.createTab({  
     title:'Welcome',
     window:welcomeWin
-});
+});	
 
-var WelcomeWindow = require('WelcomeWindow'),
-		welcomeWin = new WelcomeWindow();
+tabGroup.addTab(welcomeTab);
 
 //
-// create help window
+// Help/Instructions
 //
-var tab2 = Titanium.UI.createTab({  
-    icon:'KS_nav_ui.png',
-    title:'Help',
-    window:helpWin
-});
-
 var HelpWindow = require('HelpWindow'),
-		helpWin = new HelpWindow();
+	helpWin = new HelpWindow();
 
+var helpTab = Titanium.UI.createTab({  
+    title:'Instructions',
+    window:helpWin
+});	
 
-// Other Windows
+tabGroup.addTab(helpTab);
 
-var cameraButton = Titanium.UI.createButton({title: 'Take Picture'});
-cameraButton.addEventListener('click', opencamera); 
+//
+// Scan 
+//
+var ScanWindow = require('ScanWindow'),
+	scanWin = new ScanWindow();
 
-function opencamera() { 
-	Titanium.Media.showCamera({
-		success:function(event){
-			var image = event.media;
- 			imageView.image = image;
-        },
-        cancel:function(){},
-            error:function(error){
-                var a = Titanium.UI.createAlertDialog({title:'Camera'});
- 				if (error.code == Titanium.Media.NO_CAMERA){
-                    a.setMessage('Your device does not seem to have a camera.');
-                }
-                else{
-                    a.setMessage('Unexpected error: ' + error.code);
-                }
-                a.show();
-            },
-            saveToPhotoGallery:true,
-            allowImageEditing:true
-	})};
+var scanTab = Titanium.UI.createTab({  
+    title:'Scan',
+    window:scanWin
+});	
 
+tabGroup.addTab(scanTab);
 
-var win3 = Titanium.UI.createWindow({  
-    title:'Tab 3',
-    backgroundColor:'#fff'
-});
-var tab3 = Titanium.UI.createTab({  
-    icon:'KS_nav_ui.png',
-    title:'Tab 3',
-    window:win3
-});
+// Scan Results
+//
+var ResultsWindow = require('ResultsWindow'),
+	resultsWin = new ResultsWindow();
 
-var label3 = Titanium.UI.createLabel({
-	color:'#999',
-	text:'I am Window 3',
-	font:{fontSize:20,fontFamily:'Helvetica Neue'},
-	textAlign:'center',
-	width:'auto'
-});
+var resultsTab = Titanium.UI.createTab({  
+    title:'Results',
+    window:resultsWin
+});	
 
-win3.add(label3);
+tabGroup.addTab(resultsTab);
 
-var win4 = Titanium.UI.createWindow({  
-    title:'Tab 4',
-    backgroundColor:'#fff'
-});
-var tab4 = Titanium.UI.createTab({  
-    icon:'KS_nav_ui.png',
-    title:'Tab 4',
-    window:win4
-});
-
-var label4 = Titanium.UI.createLabel({
-	color:'#999',
-	text:'I am Window 4',
-	font:{fontSize:20,fontFamily:'Helvetica Neue'},
-	textAlign:'center',
-	width:'auto'
-});
-
-win4.add(label4);
-
-var win5 = Titanium.UI.createWindow({  
-    title:'Tab 5',
-    backgroundColor:'#fff'
-});
-var tab5 = Titanium.UI.createTab({  
-    icon:'KS_nav_ui.png',
-    title:'Tab 5',
-    window:win5
-});
-
-var label5 = Titanium.UI.createLabel({
-	color:'#999',
-	text:'I am Window 5',
-	font:{fontSize:20,fontFamily:'Helvetica Neue'},
-	textAlign:'center',
-	width:'auto'
-});
-
-win5.add(label5);
-
+// Score Window
 var ScoreWindow = require('ScoreWindow'), 
-scoreWin = new ScoreWindow();
+	scoreWin = new ScoreWindow();
 
-var tab6 = Titanium.UI.createTab({  
-    icon:'KS_nav_ui.png',
-    title:'Tab 6',
+var scoreTab = Titanium.UI.createTab({  
+    title:'Score',
     window:scoreWin
-});
+});	
 
+tabGroup.addTab(scoreTab);
 
-
-//
-//  add tabs
-//
-tabGroup.addTab(tab1);  
-tabGroup.addTab(tab2);  
-tabGroup.addTab(tab3);  
-tabGroup.addTab(tab4);  
-tabGroup.addTab(tab5);
-tabGroup.addTab(tab6);  
-  
-
-
-// open tab group
+// Launch windows
 tabGroup.open();

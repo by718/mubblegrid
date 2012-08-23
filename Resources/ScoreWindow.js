@@ -1,5 +1,6 @@
 function ScoreWindow() {
-	var scoreWindow = Ti.UI.createWindow({backgroundColor:'#fff'});
+	var scoreWindow = Ti.UI.createWindow({backgroundColor:'#fff',
+		tabBarHidden: 'true'});
 	var scoreLabel=createScoreLabel();
 	scoreWindow.add(scoreLabel);
 	
