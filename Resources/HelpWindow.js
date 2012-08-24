@@ -9,7 +9,7 @@ function HelpWindow(message) {
 	var label1 = Ti.UI.createLabel({
       color: '#000',
       font: { fontSize:14 },
-      text: 'We are ready to scan your test.\n- Focus and make sure lighting is good.\n- Capture all 4 corners.',
+      text: 'We are ready to scan your test.\n- Line up the red circles with the circles on the paper.\n- Focus and make sure lighting is good.',
       textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
       left: 10,
       right: 10,
@@ -38,22 +38,22 @@ function HelpWindow(message) {
 	function opencamera() { 
 		
 	var quadrantIICircle = Titanium.UI.createView({
-		width:50,
-		height:50,
+		width:25,
+		height:25,
 		borderColor:'red',
 		borderWidth:2,
-		borderRadius:27,
-		top:50,
+		borderRadius:25,
+		top:20,
 		left:20
 	});
 	
 	var quadrantIVCircle = Titanium.UI.createView({
-		width:50,
-		height:50,
+		width:25,
+		height:25,
 		borderColor:'red',
 		borderWidth:2,
-		borderRadius:27,
-		bottom:35,
+		borderRadius:25,
+		bottom:20,
 		right:30
 	});
 	
