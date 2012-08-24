@@ -1,4 +1,4 @@
-function ScanWindow() {
+function ScanWindow(responses) {
 	var win = Ti.UI.createWindow({
 		title: 'Scan',
 		backgroundColor: '#ccc',
@@ -11,6 +11,7 @@ function ScanWindow() {
 	var imageView = Titanium.UI.createImageView({
     	height:200,
     	width:200,
+    	top: 20,
         image:f.nativePath
     });
     
@@ -31,11 +32,16 @@ function ScanWindow() {
     	bottom: 10
     })
     
-    var emailButton=Titanium.UI.createButton({title:"Email My Score",height:36,left:105,top:181,width:120});
-	emailButton.addEventListener('click', function () {
-		alert("Alert!");
-	});
-	win.add(emailButton);
+   var responsesLabel = Ti.UI.createLabel({
+      color: '#000',
+      font: { fontSize:14 },
+      text: responses,
+      textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+      top: 200,
+      width: 'auto', height: 'auto'
+    });
+    
+    win.add(responsesLabel);
     
     btnNav.addEventListener('click',function(e) 
     {

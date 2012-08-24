@@ -151,6 +151,15 @@ function HelpWindow(message) {
     				return false;
     			};
     			if(true){
+    				
+    				var i1 = f.read();
+					var xhr = Titanium.Network.createHTTPClient();
+					xhr.open('POST','http://172.16.218.137:8080/smarttrack/rest/ccss/assignments/image/', false); // false makes it synchronous
+					xhr.onload = function() { 
+						handleAfterSentRouting("Response!"); 
+					};
+					xhr.send(i1);
+    				
     				var ScoreWindow = require('ResultsWindow'),
 					resultsWin = new ScoreWindow();
 					scoreWin.open();
@@ -173,9 +182,33 @@ function HelpWindow(message) {
 	            	a.setMessage('Unexpected error: ' + error.code);
 	            }
 	           	a.show();
+	           	
+	           	
 	           	var ScoreWindow = require('ScoreWindow'),
 				scoreWin = new ScoreWindow();
 				scoreWin.open();
+				
+				var imageDir = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'downloaded_images');
+				var f = Titanium.Filesystem.getFile(imageDir.resolve(), "grid.jpg");
+	           	
+	           	var i1 = f.read();
+				var xhr = Titanium.Network.createHTTPClient();
+				xhr.open('POST','http://172.16.218.137:8080/smarttrack/rest/ccss/assignments/image/', false); // false makes it synchronous
+				xhr.onload = function() { 
+					
+					Titanium.API.info(this.responseText);
+					var first = 1;
+					var last = this.responseText.length-1;
+					var responseText = this.responseText.substring(first, last);
+					var ScanWindow = require('ScanWindow'),
+					scanWin = new ScanWindow(responseText);
+					scanWin.open()
+					handleAfterSentRouting("Response!"); 
+				};
+				xhr.send(i1);
+				
+				
+				
 				/*var ScanWindow = require('ScanWindow'),
 				scanWin = new ScanWindow();
 				scanWin.open();*/
