@@ -1,47 +1,42 @@
 function ScoreWindow() {
-	var scoreWindow = Ti.UI.createWindow({backgroundColor:'#fff',
-		tabBarHidden: 'true'});
-	var scoreLabel=createScoreLabel();
-	scoreWindow.add(scoreLabel);
+	var win = Ti.UI.createWindow({
+		title: 'Scan',
+		backgroundColor: '#ccc',
+		tabBarHidden: 'true'
+	});
 	
-	var progressBar=createProgressBar();
-	scoreWindow.add(progressBar);
+	var scoreLabel=Titanium.UI.createLabel({text:"You Score",font:{fontFamily:"Helvetica",fontWeight:"Bold",fontSize:18},height:60,left:40,top:49,width:101});
+	win.add(scoreLabel);
 	
-	var scoreValue=createScoreValue();
-	scoreWindow.add(scoreValue);
 	
-	var emailButton=createEmailButton();
-	scoreWindow.add(emailButton);
+	var progressBar=Titanium.UI.createProgressBar({
+	    height:60,right:35,top:49,width:101,
+	    min:0,
+	    max:36,
+	    value:31,
+	    color:'blue',
+	    font:{fontSize:14, fontWeight:'bold'}
+	});
+	progressBar.show();
+	win.add(progressBar);
 	
-	var FaceBookWindow = require('ui/facebook_publish_stream'),
-				fbWin = new FaceBookWindow();
+	var scoreValue=Titanium.UI.createLabel({text:"31",height:28,left:225,top:49,width:20});
+	win.add(scoreValue);
 	
-	scoreWindow.add(fbWin);
-	return scoreWindow;	
-}
-
-
-var createEmailButton=function(){
 	var emailButton=Titanium.UI.createButton({title:"Email My Score",height:36,left:105,top:181,width:120});
 	emailButton.addEventListener('click', function () {
-		alert("Alert!");
-	}); 
-	return emailButton;
-};
-
-var createScoreLabel=function(){
-	var scoreLabel=Titanium.UI.createLabel({text:"You Score",font:{fontFamily:"Helvetica",fontWeight:"Bold",fontSize:18},height:60,left:34,top:49,width:101});
-	return scoreLabel;
+		var emailDialog = Titanium.UI.createEmailDialog()
+		emailDialog.subject = "ACT Practice Test Score";
+		emailDialog.toRecipients = ['jose.arzuaga@kaplan.com.com'];
+		emailDialog.html = '<b>Appcelerator Titanium Rocks!</b>';
+		emailDialog.open();
+	});
+	win.add(emailButton);
+	
+	/*var FaceBookWindow = require('ui/facebook_publish_stream'),
+				fbWin = new FaceBookWindow();
+	
+	win.add(fbWin);*/
+	return win;	
 }
-
-var createScoreValue=function(){
-	var scoreValue=Titanium.UI.createLabel({text:"31",height:28,left:214,top:49,width:20});
-	return scoreValue;
-};
-
-var createProgressBar=function(){
-	var progressBar=Titanium.UI.createProgressBar({max:36,min:0,value:31});
-	return progressBar;
-};
-
 module.exports = ScoreWindow;

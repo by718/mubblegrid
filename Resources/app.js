@@ -16,6 +16,8 @@ var welcomeTab = Titanium.UI.createTab({
     window:welcomeWin
 });	
 
+welcomeWin.open();
+
 tabGroup.addTab(welcomeTab);
 
 //
@@ -24,26 +26,26 @@ tabGroup.addTab(welcomeTab);
 var HelpWindow = require('HelpWindow'),
 	helpWin = new HelpWindow();
 
-var helpTab = Titanium.UI.createTab({  
+/*var helpTab = Titanium.UI.createTab({  
     title:'Instructions',
     window:helpWin
-});	
+});*/	
 
-tabGroup.addTab(helpTab);
+//tabGroup.addTab(helpTab);
 
 //
 // Scan 
 //
-var ScanWindow = require('ScanWindow'),
+/*var ScanWindow = require('ScanWindow'),
 	scanWin = new ScanWindow();
-
-var scanTab = Titanium.UI.createTab({  
+*/
+/*var scanTab = Titanium.UI.createTab({  
     title:'Scan',
     window:scanWin
 });	
 
 tabGroup.addTab(scanTab);
-
+*/
 // Scan Results
 //
 var ResultsWindow = require('ResultsWindow'),
@@ -68,4 +70,4 @@ var scoreTab = Titanium.UI.createTab({
 tabGroup.addTab(scoreTab);
 
 // Launch windows
-tabGroup.open();
+//tabGroup.open();

@@ -1,7 +1,8 @@
 function WelcomeWindow() {
+	
 	var win = Ti.UI.createWindow({
 		title: 'Welcome',
-		backgroundColor: '#ccc',
+		backgroundColor: '#fff',
 		tabBarHidden: 'true'
 	});
 	
@@ -18,7 +19,7 @@ function WelcomeWindow() {
     
     win.add(label1);
 
-    var btnNav = Ti.UI.createButton({
+	var btnNav = Ti.UI.createButton({
     	title: 'Get Started',
     	color: '#000',
     	right: 10,
@@ -27,7 +28,9 @@ function WelcomeWindow() {
     
     btnNav.addEventListener('click',function(e) 
     {
-		tabGroup.setActiveTab(1);
+		var HelpWindow = require('HelpWindow'),
+		helpWin = new HelpWindow();
+		helpWin.open();
 	});
     
     win.add(btnNav);

@@ -5,44 +5,52 @@ function ScanWindow() {
 		tabBarHidden: 'true'
 	});
 	
-	var cameraButton = Titanium.UI.createButton({title: 'Take Picture'});
-	cameraButton.addEventListener('click', opencamera); 
+	var imageDir = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'downloaded_images');
+	var f = Titanium.Filesystem.getFile(imageDir.resolve(), "grid.jpg");
 	
-	function opencamera() { 
-		Titanium.Media.showCamera({
-			success:function(event){
-				var image = event.media;
-	 			imageView.image = image;
-	        },
-	        cancel:function(){},
-	            error:function(error){
-	                var a = Titanium.UI.createAlertDialog({title:'Camera'});
-	 				if (error.code == Titanium.Media.NO_CAMERA){
-	                    a.setMessage('Your device does not seem to have a camera.');
-	                }
-	                else{
-	                    a.setMessage('Unexpected error: ' + error.code);
-	                }
-	                a.show();
-	            },
-	            saveToPhotoGallery:true,
-	            allowImageEditing:true
-		})};
-	win.add(cameraButton)
-	
+	var imageView = Titanium.UI.createImageView({
+    	height:200,
+    	width:200,
+        image:f.nativePath
+    });
+    
+	win.add(imageView);
+
     var btnNav = Ti.UI.createButton({
     	title: 'Use',
     	color: '#000',
-    	right: 10,
+    	right: 75,
+    	bottom: 10,
+    	width:75
+    })
+    
+    var btnRetake = Ti.UI.createButton({
+    	title: 'Retake',
+    	color: '#000',
+    	left: 75,
     	bottom: 10
     })
+    
+    var emailButton=Titanium.UI.createButton({title:"Email My Score",height:36,left:105,top:181,width:120});
+	emailButton.addEventListener('click', function () {
+		alert("Alert!");
+	});
+	win.add(emailButton);
     
     btnNav.addEventListener('click',function(e) 
     {
 		tabGroup.setActiveTab(3);
 	});
+	
+	btnRetake.addEventListener('click',function(e) 
+    {
+		var HelpWindow = require('HelpWindow'),
+		helpWin = new HelpWindow();
+		helpWin.open();
+	});
     
     win.add(btnNav);
+    win.add(btnRetake);
 
     return win;
 }
