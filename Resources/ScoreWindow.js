@@ -25,10 +25,11 @@ function ScoreWindow() {
 	
 	var emailButton=Titanium.UI.createButton({title:"Email My Score",height:36,left:105,top:181,width:120});
 	emailButton.addEventListener('click', function () {
-		var emailDialog = Titanium.UI.createEmailDialog()
+		var emailDialog = Titanium.UI.createEmailDialog();
 		emailDialog.subject = "ACT Practice Test Score";
 		emailDialog.toRecipients = ['jose.arzuaga@kaplan.com.com'];
-		emailDialog.html = '<b>Appcelerator Titanium Rocks!</b>';
+		emailDialog.html = true;
+		emailDialog.messageBody = '<b>I just got a score of 31 on my ACT practice test!</b>';
 		emailDialog.open();
 	});
 	win.add(emailButton);

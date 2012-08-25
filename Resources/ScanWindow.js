@@ -37,7 +37,7 @@ function ScanWindow(responses) {
       font: { fontSize:14 },
       text: responses,
       textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-      top: 200,
+      top: 250,
       width: 'auto', height: 'auto'
     });
     
@@ -48,12 +48,17 @@ function ScanWindow(responses) {
 		tabGroup.setActiveTab(3);
 	});
 	
-	btnRetake.addEventListener('click',function(e) 
-    {
+	btnRetake.addEventListener('click',function(e){
 		var HelpWindow = require('HelpWindow'),
 		helpWin = new HelpWindow();
 		helpWin.open();
 	});
+    
+    btnNav.addEventListener('click', function(e){
+    	var ScoreWindow = require('ScoreWindow'),
+		scoreWin = new ScoreWindow();
+		scoreWin.open();
+    });
     
     win.add(btnNav);
     win.add(btnRetake);

@@ -38,8 +38,8 @@ function HelpWindow(message) {
 	function opencamera() { 
 		
 	var quadrantIICircle = Titanium.UI.createView({
-		width:25,
-		height:25,
+		width:28,
+		height:28,
 		borderColor:'red',
 		borderWidth:2,
 		borderRadius:25,
@@ -48,8 +48,8 @@ function HelpWindow(message) {
 	});
 	
 	var quadrantIVCircle = Titanium.UI.createView({
-		width:25,
-		height:25,
+		width:28,
+		height:28,
 		borderColor:'red',
 		borderWidth:2,
 		borderRadius:25,
@@ -142,33 +142,34 @@ function HelpWindow(message) {
 				var f = Titanium.Filesystem.getFile(imageDir.resolve(),"grid.jpg");
 				f.write(image);
     			//loadIndicator.hide();
-    			loadIndicator.message = 'Extracting responses from image...';
-    			var success = function omrImage(){
-    				var number = Math.floor((Math.random()*10)+1);
-    				if(number%2==0){
-    					return true;
-    				}
-    				return false;
-    			};
-    			if(true){
     				
     				var i1 = f.read();
 					var xhr = Titanium.Network.createHTTPClient();
 					xhr.open('POST','http://172.16.218.137:8080/smarttrack/rest/ccss/assignments/image/', false); // false makes it synchronous
 					xhr.onload = function() { 
-						handleAfterSentRouting("Response!"); 
+						Titanium.API.info(this.responseText);
+						if(this.responseText=="\"\""){
+							Titanium.API.info("EMTPY!");
+							var HelpWindow = require('HelpWindow'),
+							helpWin = new HelpWindow('Pleaes retake the picture. Remember to align the red circles on the screen to the black circles on the paper.');
+							helpWin.open();
+						}
+						else{
+							loadIndicator.message = 'Extracting responses from image...';
+							var first = 1;
+							var last = this.responseText.length-1;
+							var responseText = this.responseText.substring(first, last);
+							var ScanWindow = require('ScanWindow'),
+							scanWin = new ScanWindow(responseText);
+							scanWin.open()
+							handleAfterSentRouting(this.responseText);	
+						}
 					};
 					xhr.send(i1);
     				
     				var ScoreWindow = require('ResultsWindow'),
 					resultsWin = new ScoreWindow();
 					scoreWin.open();
-    			}
-    			else{
-    				var HelpWindow = require('HelpWindow'),
-					helpWin = new HelpWindow('Pleaes retake the picture. Try not to mess it up this time!');
-					helpWin.open();
-    			}
 	        },
 	        cancel:function(){
 	        		
@@ -183,39 +184,35 @@ function HelpWindow(message) {
 	            }
 	           	a.show();
 	           	
-	           	
-	           	var ScoreWindow = require('ScoreWindow'),
-				scoreWin = new ScoreWindow();
-				scoreWin.open();
-				
-				var imageDir = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'downloaded_images');
+	           	var imageDir = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'downloaded_images');
 				var f = Titanium.Filesystem.getFile(imageDir.resolve(), "grid.jpg");
 	           	
 	           	var i1 = f.read();
 				var xhr = Titanium.Network.createHTTPClient();
 				xhr.open('POST','http://172.16.218.137:8080/smarttrack/rest/ccss/assignments/image/', false); // false makes it synchronous
 				xhr.onload = function() { 
-					
 					Titanium.API.info(this.responseText);
-					var first = 1;
-					var last = this.responseText.length-1;
-					var responseText = this.responseText.substring(first, last);
-					var ScanWindow = require('ScanWindow'),
-					scanWin = new ScanWindow(responseText);
-					scanWin.open()
-					handleAfterSentRouting("Response!"); 
+					if(this.responseText=="\"\""){
+						Titanium.API.info("EMTPY!");
+						var HelpWindow = require('HelpWindow'),
+						helpWin = new HelpWindow('Pleaes retake the picture. Remember to align the red circles on the screen to the black circles on the paper.');
+						helpWin.open();
+					}
+					else{
+						var first = 1;
+						var last = this.responseText.length-1;
+						var responseText = this.responseText.substring(first, last);
+						var ScanWindow = require('ScanWindow'),
+						scanWin = new ScanWindow(responseText);
+						scanWin.open()
+						handleAfterSentRouting(this.responseText);	
+					}
 				};
 				xhr.send(i1);
-				
-				
-				
-				/*var ScanWindow = require('ScanWindow'),
-				scanWin = new ScanWindow();
-				scanWin.open();*/
 	      	},
 	        saveToPhotoGallery:false,
 	        allowImageEditing:true,
-	        overlay:overlay, 
+	        overlay:overlay,
 	        showControls:false
 		})	
 	};
